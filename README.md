@@ -17,3 +17,15 @@ Infrastructure as Code deployment needs elements of configuration data that are 
 - Groups for RBAC roles
 
 In the configuration module these parameter are captured in JSON format and stored in the '/param' directory. The configuration module parses parameters through with the terraform engine to create the resource blocks that inherit use case realted dependencies. Instead of client specific scripts, use case specific parameter is applied to a harmonized logic.
+
+## Contributing
+This project is a community project the code is open source.  Please submit your contributions by forking this repository and submitting a pull request!  Avaloq appreciates any contributions that are made by the open source community.
+
+## License
+Copyright (c) 2023 Avaloq and/or its affiliates.
+
+Licensed under the Apache License, Version 2.0.
+
+See [License](https://www.apache.org/licenses/LICENSE-2.0) for more details.
+
+AVALOQ DOES NOT PROVIDE ANY WARRANTY FOR SOFTWARE CONTAINED WITHIN THIS REPOSITORY AND NO CUSTOMARY SECURITY REVIEW HAS BEEN PERFORMED. THIRD PARTIES MAY HAVE POSTED SOFTWARE, MATERIAL OR CONTENT TO THIS REPOSITORY WITHOUT ANY REVIEW. USE AT YOUR OWN RISK. 
