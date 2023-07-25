@@ -6,9 +6,7 @@ image::https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/dep
 # Avaloq Cloud Framework
 
 
-The Avaloq Cloud Framework (ACF) supports the adoption of cloud infrastructure with a baseline configuration for a virtual data center. ![]([license])[license]
-
-[![General badge](https://img.shields.io/badge/license-apache-green)](https://shields.io/)
+The Avaloq Cloud Framework (ACF) supports the adoption of cloud infrastructure with a baseline configuration for a virtual data center. [![License](https://img.shields.io/badge/license-apache-green)](https://www.apache.org/licenses/LICENSE-2.0)
 
 ## Development Module
 
@@ -19,5 +17,3 @@ Infrastructure as Code deployment needs elements of configuration data that are 
 - Groups for RBAC roles
 
 In the configuration module these parameter are captured in JSON format and stored in the '/param' directory. The configuration module parses parameters through with the terraform engine to create the resource blocks that inherit use case realted dependencies. Instead of client specific scripts, use case specific parameter is applied to a harmonized logic.
-
-[license]: https://img.shields.io/badge/license-apache-green
