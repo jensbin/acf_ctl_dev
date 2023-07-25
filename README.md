@@ -6,7 +6,9 @@ image::https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/dep
 # Avaloq Cloud Framework
 
 
-The Avaloq Cloud Framework (ACF) supports the adoption of cloud infrastructure with a baseline configuration for a virtual data center. ![]([black-shield])[license]
+The Avaloq Cloud Framework (ACF) supports the adoption of cloud infrastructure with a baseline configuration for a virtual data center. ![]([license])[license]
+
+[![General badge](https://img.shields.io/badge/license-apache-green)](https://shields.io/)
 
 ## Development Module
 
