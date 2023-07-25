@@ -1,0 +1,111 @@
+// Copyright (c) 2023 Avaloq and/or its affiliates.
+// Licensed under the Apache 2.0 license shown at https://www.apache.org/licenses/LICENSE-2.0.
+
+image::https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg[Deploy on Oracle Cloud, link="https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/avaloqcloud/terraform-oci-ocloud-configuration/archive/refs/heads/main.zip"]
+
+== Avaloq Cloud Framework
+
+image:https://img.shields.io/badge/license-apache-green[link="LICENSE"]
+
+With the arrival of hardware based controller, cloud infrastructure is evolving into an hosting platform for financial services. Next generation cloud controller enable service operators to host banking solutions on third party infrastructure without compromising on security, compliance and souvereignity. The Avaloq Cloud Framework (ACF) aims to increase operational efficiency, acclerate the adoption of agile development and reduce investment risks related to traditional infrastrucutre. It helps financial institutions to connect core banking with internet facing services hosted at a cloud provider. link:https://en.wikipedia.org/wiki/Infrastructure_as_code["Infrastructure as Code" (IaC)] provides topology definitions that extract configuration parameters from service assets to inherit operator controls during the provisioning process. Declarative programming requires a secure environment to store the provisioning state. Oracle Cloud Infrastructure is used as a foundation for an architecture that combines a core banking infrastructure with a financial cloud services in AWS, Azure or Google. The  link:https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Concepts/resourcemanager.htm[Resource Manager] is used as a root provisioner for Terraform modules that trigger service deployments accross multiple clouds. 
+
+=== Core Banking Infrastructure
+The Avaloq Cloud Framework (ACF) supports the adoption of cloud infrastructure with a baseline configuration for a virtual data center. The topology template includes provisioning instructions for multiple cloud provider into a link:assets/resident[resident] and defines logical assets that includes systems in multiple locations.
+
+[#img-architecture] 
+.Virtual Data Center 
+image::/docs/images/base_config.drawio.png[Baseline Configuration] 
+
+=== Provisioning Process
+Deployment templates extract configuration parameter from the deployment code for service assets. This enables operators to start with a recommendet set of resources and refine the configuration in incremental steps. The state-aware provisioning suggests an iterative approach. A SCRUM team is made up of system administrators with expertise in application management, network-, database- and security operations. They can adjust settings without learning HCL or Terraform. Service configurations are captured in JSON files and can be edited without touching the deployment code.
+
+[#img-architecture] 
+.Code Delivery
+image::/docs/images/code_delivery.drawio.png[Code Delivery]
+
+The framework aims to provide more flexibility for infrastructure operators. Storing the code in a git repository and connecting the Resource Manager (ORM) with the source allows administrators to implement a link:https://en.wikipedia.org/wiki/Continuous_delivery[continuous delivery] process. Operation engineers "borrow" tools and workflows, invented for software developer. But instead of using these tools for application code, operators leverage them for infrastructure automation. Git becomes the single source of truth for both, application and infrastructure code. A service template describes the desired state for the assets and is versioned in the repository. Operators introduce self-service following in three major steps: 
+
+- *Resident*: Default settings enable initial deployments for a new services. Operators evaluate the infrastructure platform, delivering a first service. System administrators and service owners explore service options that help to bootstrap operational tasks. 
+- *Topology*: Default settings are stored in configuration files, containing parameters as lists of objects. Combining mulitple resources into assets, the number of resource arguments is significantly reduced.  Dependencies are modelled referencing resource names. Subject matter experts refine these parameter to add, change or delete resources from a template. 
+- *Services*: The objective of every adoption project is the deployment of a banking solution. Beside refining the topology, resources need to be configured and applications need to be installed. Configuration scripts are are triggerdd from a host configuration, and services hosted on the internet can be attached to a private network. 
+
+=== Parameterization
+Cloud solutions are assembled using service assets. The framework provides predefined components that abstract provider specific APIs. Automation code for service deployments complete the servicve configuration. Predefined components can be invoked referring to modules in the link:https://registry.terraform.io/browse/modules?provider=oci[terraform registry] or to a git repository, containing infrastructure code. A great starting point are the link:https://registry.terraform.io/search/modules?q=oci%20cloud%20bricks[cloudbricks] components. Depending on the level of standardization, service components are introduced using the following methods:
+
+* *Solutions* represent service compositions that are customized through resource blocks, added in the main.tf file.
+* *Resources* are defined as Terraform modules. Logical resources like container orchstrator or network appliances complement the initial set of a cloud proivder resources like bare metal or virtual server. Resources from multiple clouds invoked using an own link:https://registry.terraform.io/browse/providers[Terraform provider]. 
+* *Modules* represent solution components with an own schema file and can be used accross multiple residents, examples are application and database hosts or container cluster. 
+
+==== Deployment Options
+
+link:https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Concepts/resourcemanager.htm[Oracle's Resource Manager] exposes assets through proteced user- and application interfaces, keeping service owners in charge to determine when and where a service will be launched. A schema file extends the console and facilitates variable entries in the `Create Stack` page. The default schema offers the following of options:
+
+* *Tenant Classification*: The class parameter helps to constraint resource deployments according to the service limits associated with contract for a tenancy. 
+* *Lifecycle Stage*: The default protection setting is triggered by the lifecycle setting, however can be changed, should that be required.
+* *Deployment Parameter*: In the second section meta data assciated with a resident is collected. Names should be unique for a tenancy to avoid conflicts for resources, defined on root level. The lifecycle stage helps engineers to avoid over provisioning of resources that take a long time to be destroyed.
+* *Topology Options*: Executing the default deployment plan, the resource manager offers a choice of topologies that enable common use cases like enterprise applications, big-data and cloud-native services. These options can also be combined to build hybrid services. The opology selection triggers the subnet topology for a segment.
+* *Network Settings*: Generic network parameter trigger the level of exposure to the public internet. Activating the internet gateway will expose a frontend, and/or load balancer network to the public internet.
+
+==== Topology Parameter
+Service configuration represents a next level of customization. JSON files represent the design, scale and scope of a service. In the refinement phase teams collect input from practitioners to adjust the default parameter that allow operators to controll demand and optimize capacity utilization. 
+
+* link:https://github.com/ocilabs/default-configuration/blob/main/default/resident/domains.json[Administrator Domains] : Domains organize the stewardship for service assets like network, storage or compute. Domain names must be unique for a service resident. 
+
+* link:https://github.com/ocilabs/default-configuration/blob/main/default/resident/roles.json[Administrator Roles] : Roles reflect a series of policies to ensure a seprartion of duties between operators. Each role allows to manage administrator priviledges and policies independently. 
+
+* link:https://github.com/ocilabs/default-configuration/blob/main/default/resident/controls.json[Operator Controls] : Controls enable operators to constrain resource access and retrieve alarms or notifications in case of an event. Controls can also trigger scripts to apply predefined measures.
+
+* link:https://github.com/ocilabs/default-configuration/blob/main/default/resident/tags.json[Resource Tags] : Resource tags identify groups of resources, enable cost tracking and allow to define cross-domain policies.
+
+* link:https://github.com/ocilabs/default-configuration/blob/main/default/resident/channels.json[Notification Channels] : Channels utilize the messaging services for notifications generated by an event or an operator control like budget or service limits.
+
+* link:https://github.com/ocilabs/default-configuration/blob/main/default/network/segments.json[Network Segments] :  Segments provide private IP networks for a resident. OCI provides a native layer three network, tenancies can be considered as isolated, virtual data centers. 
+
+* link:https://github.com/ocilabs/default-configuration/blob/main/default/network/subnets.json[Subnets] : Subnets divide network segments into smaller parts. The purpose is to improve security and avoid address conflicts, when deploying autoscaling workloads. 
+
+* link:https://github.com/ocilabs/default-configuration/blob/main/default/network/routers.json[Edge Router] : Router are located at the cloud network boundary, the edge router represents an link:https://docs.oracle.com/en-us/iaas/Content/Network/Tasks/managingDRGs.htm[DRG] that connects network segments in the cloud with on-prem  networks, allows for transit routing and for the implementation of a Hub-and-Spoke topology with multiple VCN. 
+
+* link:https://github.com/ocilabs/default-configuration/blob/main/default/network/routes.json[Routing Destinations] : Destinations translate the name of network zones into cidr ranges that can be reached using gateways. The route is defined as a pair between a destination and a gateway.
+
+* link:https://github.com/ocilabs/default-configuration/blob/main/default/network/firewalls.json[Firewalls] : Firewalls represent port filter that either allow or block network packets  based on their port number. The port.json files contains a list of predefined ports according to link:https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.txt[RFC6335]  but can be extended with individual profiles.
+
+* link:https://github.com/ocilabs/default-configuration/blob/main/default/network/destinations.json[Zones] : Security zones descirbe portions of a network with a security requirements set. Each zone consists of a single interface, to which a security policy is applied.
+
+* link:https://github.com/ocilabs/default-configuration/blob/main/default/network/ports.json[Application Profiles] : Application Port Profiles include a combination of a protocol and a port, or a group of ports, that is used for firewalls and NAT gateways.
+
+=== Service Deployment
+The resources manager comes with a number of link:https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Concepts/providers.htm[service provider] preinstalled, additional can be pulled form the link:https://registry.terraform.io/browse/providers[Terraform registry], using the link:https://www.terraform.io/docs/language/providers/configuration.html[provider block]. The configuration module is the first out of three obligatory modules. It translates generic input paramerts into a baseline configuration. Operators adjust the service configuration when requirements evolve. For one-time deployments, the link:https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/avaloqcloud/terraform-oci-ocloud-landing-zone/archive/refs/heads/main.zip[Deploy to the Oracle Cloud] button creates a zip archive that is pushed to the resource manager directly, to enable continuous changes the code should be cloned into a private repository and be connected as a source provider.
+
+[#img-configuration] 
+.Service Configuration 
+image::/docs/images/service_configuration.drawio.png[Service Configuration]
+
+An optional operator node is employed to execute cron jobs and runbooks that help to manage service availability, schedule resource consumption and fix problems for container workloads and functions. In addition service configurations enable service manager to adopt Oracle Cloud Services as alternative to shared intranet services and to benefit from link:https://github.com/oracle-quickstart[blueprints] for services like utility computing, web- and mobile backbone services. 
+
+=== Prerequisites
+Code is written in HashiCorp Configuration Language (HCL), includes data stored in JSON format and cloud init scripts. The OCI Resource Manager executes Terraform and deploys Service Assets into a tenancy. Engineers should familerize themselfes with the following topics:
+
+* link:https://www.oracle.com/cloud/free/[Oracle Cloud Infrastructure (OCI) Account] 
+* link:https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Concepts/resourcemanager.htm[Oracle Resource Manager]
+* link:https://www.terraform.io[HashiCorp Terraform]
+* link:https://registry.terraform.io/providers/hashicorp/oci/latest[Terraform Service Provider for OCI]
+* link:https://registry.terraform.io/providers/hashicorp/time/latest[Terraform Time Service Provider]
+* link:https://cloudinit.readthedocs.io/en/latest/[Cloud Init]
+
+=== Notes/Issues
+* Destroying compartments and tag namespaces can take some time and will fail in some cases. Repeat the destroy command will continue the process.
+
+=== URLs
+This repository is intended to be used with the Oracle Resource Manager. Using the "Deploy to Oracle Cloud" button requires users to link:https://www.oracle.com/cloud/sign-in.html[sign in].
+
+=== Contributing
+This project is a community project the code is open source.  Please submit your contributions by forking this repository and submitting a pull request!  Avaloq appreciates any contributions that are made by the open source community.
+
+=== License
+Copyright (c) 2023 Avaloq and/or its affiliates.
+
+Licensed under the Apache License, Version 2.0.
+
+See link:LICENSE[LICENSE] for more details.
+
+AVALOQ DOES NOT PROVIDE ANY WARRANTY FOR SOFTWARE CONTAINED WITHIN THIS REPOSITORY AND NO CUSTOMARY SECURITY REVIEW HAS BEEN PERFORMED. THIRD PARTIES MAY HAVE POSTED SOFTWARE, MATERIAL OR CONTENT TO THIS REPOSITORY WITHOUT ANY REVIEW. USE AT YOUR OWN RISK. 
