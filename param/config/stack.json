@@ -1,0 +1,8 @@
+[
+    {
+      "foundation"  : 1,
+      "capi"        : 2,
+      "smartclient" : 3,
+      "web"         : 4
+    }
+  ]
