@@ -17,16 +17,21 @@ provider "oci" {
   alias  = "service"
   region = var.region
 }
+
+provider "oci" {
+  alias  = "home"
+  region = module.configuration.tenancy.region.key
+}
+
 variable "tenancy_ocid" { }
 
-/*/ --- tenancy configuration --- //
 locals {
   topologies = flatten(compact([var.host == true ? "host" : "", var.nodes == true ? "nodes" : "", var.container == true ? "container" : ""]))
   domains    = jsondecode(file("${path.module}/parameter/resident/domains.json"))
   segments   = jsondecode(file("${path.module}/parameter/network/segments.json"))
 }
 
-/*/ --- tenancy configuration --- //
+// --- tenancy configuration --- //
 module "configuration" {
   source         = "./config/"
   providers = {oci = oci.service}
@@ -47,13 +52,9 @@ module "configuration" {
     segments   = local.segments
   }
 }
-// --- tenancy configuration  --- /*/
+// --- tenancy configuration  --- //
 
 /*/ --- operation controls --- //
-provider "oci" {
-  alias  = "home"
-  region = module.configuration.tenancy.region.key
-}
 module "resident" {
   source = "github.com/avaloqcloud/terraform-oci-ocloud-asset-resident"
   depends_on = [module.configuration]

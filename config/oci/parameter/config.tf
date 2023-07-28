@@ -1,5 +1,5 @@
-// Copyright (c) 2022 Avaloq and/or its affiliates.
-// Licensed under the MIT License.
+// Copyright (c) 2023 Avaloq and/or its affiliates.
+// Licensed under the Apache 2.0 license shown at https://www.apache.org/licenses/LICENSE-2.0.
 
 variable "account" {
   description = "unique identifier for the oci tenancy"
