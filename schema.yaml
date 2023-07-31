@@ -13,9 +13,11 @@ variableGroups:
   - title: "Account"
     variables:
       - class
-  - title: "Test"
+  - title: "Hidden"
     variables:
       - tenancy_ocid
+      - compartment_ocid
+    visible: false
 
 variables:
 # Oracle Cloud Settings
