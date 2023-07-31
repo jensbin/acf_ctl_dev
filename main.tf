@@ -10,7 +10,7 @@ variable "compartment_ocid" {}
 variable "current_user_ocid" {}
 // --- settings --- //
 
-// --- schema --- //
+/*/ --- schema --- //
 locals {
   topologies = flatten(compact([
     var.management == true ? "management" : "", 
@@ -18,13 +18,11 @@ locals {
     var.nodes == true ? "nodes" : "", 
     var.container == true ? "container" : ""
   ]))
-  /*
   domains    = jsondecode(file("${path.module}/default/resident/domains.json"))
   segments   = jsondecode(file("${path.module}/default/network/segments.json"))
   wallets    = jsondecode(file("${path.module}/default/encryption/wallets.json"))
-  */
 }
-// --- schema --- //
+// --- schema --- /*/
 
 /*/ --- configuration --- //
 module "configuration" {

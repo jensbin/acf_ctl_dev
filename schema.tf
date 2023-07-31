@@ -4,7 +4,7 @@
 # Tenancy Classification
 variable "class" {
   type        = string
-  description = "The tenancy classification sets boundaries for resource deployments"
+  description = "The contract classification reflects common service limits during resource deployments"
   default     = "PAYG"
 }
 # Resident Configuration
@@ -34,7 +34,7 @@ variable "solution"            {
 variable "repository" {
   type        = string
   description = "The service configuration is stored using infrastructure code in a repository"
-  default     = "https://github.com/avaloqcloud/terraform-oci-ocloud-configuration"
+  default     = "https://github.com/avaloqcloud/core"
 }
 
 variable "owner" {
@@ -56,7 +56,7 @@ variable "stage"           {
 variable "region" {
   type        = string
   description = "The region defines the target region for service deployments"
-  default     = "us-ashburn-1"
+  default     = "eu-zurich-1"
 }
 
 # Service Topologies
@@ -74,14 +74,20 @@ variable "nodes" {
 
 variable "container" {
   type        = bool
-  description = "Provisioning a container topology prepares a service resident to deploy cloud native services on Oracle's Kubernetes Engine (OKE)."
+  description = "Provisioning a container topology prepares a service resident to deploy container as Oracle Container Instances."
+  default     = true
+}
+
+variable "cluster" {
+  type        = bool
+  description = "Provisioning a cluster topology prepares a service resident to deploy cloud native services on Oracle's Kubernetes Engine (OKE)."
   default     = true
 }
 
 # Domain Protection
 variable "amend" {
   type        = bool
-  description = "A flage that allows to delete compartments with terraform destroy. This setting should only be changed by experienced users."
+  description = "The flag enables operators to delete compartments with terraform destroy. For production deployments, this flag should be disabled."
   default     = true
 }
 

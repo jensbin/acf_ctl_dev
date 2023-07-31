@@ -15,6 +15,7 @@ terraform {
   }
 }
 
+/*
 provider "oci" {
   alias  = "home"
   region = module.configuration.tenancy.region.key
@@ -24,3 +25,4 @@ provider "oci" {
   alias  = "service"
   region = var.location
 }
+*/

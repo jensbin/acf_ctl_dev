@@ -10,10 +10,12 @@ version: "20230801"
 locale: "en"
 
 variableGroups:
-- title: "Tenancy"
+- title: "Oracle Cloud Settings"
   visible: true
   variables:
   - tenancy_ocid
+  - compartment_ocid
+  - current_user_ocid
   - class
 
 - title: "Service Resident"
@@ -50,8 +52,22 @@ variableGroups:
   - amend
 
 variables:
-# Tenancy
+# Oracle Cloud Settings
   tenancy_ocid:
+    title: "Tenancy ID"
+    description: "The Oracle Cloud Identifier for your tenancy"
+    visible: false
+    type: string
+    required: true
+
+  compartment_ocid:
+    title: "Tenancy ID"
+    description: "The Oracle Cloud Identifier for your tenancy"
+    visible: false
+    type: string
+    required: true
+
+  current_user_ocid:
     title: "Tenancy ID"
     description: "The Oracle Cloud Identifier for your tenancy"
     visible: false
@@ -131,6 +147,7 @@ variables:
     required: true
     enum:
       - DEV
+      - SIT
       - UAT
       - PROD
 
@@ -149,17 +166,22 @@ variables:
 # Service Topology
   host:
     type: boolean
-    title: "Enterprise Service"
+    title: "Application Hosting"
     required: false
 
   nodes:
     type: boolean
-    title: "Cloud Service"
+    title: "Distributed Data Processing"
     required: false
 
   container:
     type: boolean
-    title: "Container Service"
+    title: "Container Instances"
+    required: false
+
+  cluster:
+    type: boolean
+    title: "Kubernetes Service"
     required: false
 
 # Network Options
