@@ -14,7 +14,6 @@ variableGroups:
   visible: true
   variables:
   - tenancy_ocid
-  - current_user_ocid
   - class
 
 - title: "Service Resident"
@@ -53,13 +52,6 @@ variableGroups:
 variables:
 # Oracle Cloud Settings
   tenancy_ocid:
-    title: "Tenancy ID"
-    description: "The Oracle Cloud Identifier for your tenancy"
-    visible: false
-    type: string
-    required: true
-
-  current_user_ocid:
     title: "Tenancy ID"
     description: "The Oracle Cloud Identifier for your tenancy"
     visible: false
