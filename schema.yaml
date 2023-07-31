@@ -26,6 +26,12 @@ variables:
     description: "The Oracle Cloud Identifier for your tenancy"
     type: string
     required: true
+    
+  compartment_ocid:
+    title: "CompartmentID"
+    description: "The Oracle Cloud Identifier for your compartment"
+    type: string
+    required: true
 
   class:
     title: "Classification"
