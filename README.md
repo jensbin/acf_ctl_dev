@@ -1,7 +1,7 @@
 <!---- Copyright (c) 2023 Avaloq and/or its affiliates. ---->
 <!---- Licensed under the Apache 2.0 license shown at https://www.apache.org/licenses/LICENSE-2.0.  ---->
 
-[![Deploy to Oracle Cloud](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/avaloqcloud/dev/master.zip)
+[![Deploy to Oracle Cloud](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/avaloqcloud/dev/archive/refs/heads/main.zip)
 
 # Avaloq Cloud Framework
 
