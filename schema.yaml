@@ -10,11 +10,20 @@ version: "20230801"
 locale: "en"
 
 variableGroups:
-- title: "Oracle Cloud Settings"
+- title: "Settings"
   visible: true
   variables:
   - tenancy_ocid
   - class
+
+variableGroups:
+- title: "Hidden"
+  visible: false
+  variables:
+  - current_user_ocid
+  - compartment_ocid
+  - current_user_ocid
+  - region
 
 variables:
 # Oracle Cloud Settings
