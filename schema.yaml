@@ -13,6 +13,9 @@ variableGroups:
   - title: "Account"
     variables:
       - class
+  - title: "Test"
+    variables:
+      - tenancy_ocid
 
 variables:
 # Oracle Cloud Settings
