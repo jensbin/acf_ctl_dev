@@ -14,13 +14,6 @@ variableGroups:
     variables:
       - class
 
-- title: "Hidden"
-  variables:
-  - compartment_ocid
-  - current_user_ocid
-  - region
-  visible: false
-
 variables:
 # Oracle Cloud Settings
   tenancy_ocid:
