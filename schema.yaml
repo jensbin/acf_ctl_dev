@@ -16,7 +16,6 @@ variableGroups:
   - tenancy_ocid
   - class
 
-variableGroups:
 - title: "Hidden"
   visible: false
   variables:
