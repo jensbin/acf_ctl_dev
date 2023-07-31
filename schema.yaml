@@ -7,13 +7,12 @@ description: "The Avaloq Cloud Framework helps to deploy banking services in the
 informationalText: "This framework helps operators to set up a hosting environment for banking applications on cloud infrastructure. A base set of resources is provisioned and configured."
 schemaVersion: 0.0.2
 version: "20230801"
-locale: "en"
 
+locale: "en"
 variableGroups:
-- title: "Settings"
-  variables:
-  - tenancy_ocid
-  - class
+  - title: "Account"
+    variables:
+      - class
 
 - title: "Hidden"
   variables:
@@ -25,9 +24,8 @@ variableGroups:
 variables:
 # Oracle Cloud Settings
   tenancy_ocid:
-    title: "Tenancy ID"
+    title: "TenancyID"
     description: "The Oracle Cloud Identifier for your tenancy"
-    visible: false
     type: string
     required: true
 
