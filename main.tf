@@ -5,10 +5,11 @@
 
 // --- settings --- //
 variable "tenancy_ocid" {}
+/*
 variable "region" {}
 variable "compartment_ocid" {}
 variable "current_user_ocid" {}
-// --- settings --- //
+// --- settings --- /*/
 
 /*/ --- schema --- //
 locals {

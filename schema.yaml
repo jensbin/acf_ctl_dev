@@ -32,27 +32,6 @@ variables:
     type: string
     required: true
 
-  current_user_ocid:
-    title: "User ID"
-    description: "The Oracle Cloud Identifier for the current user"
-    visible: false
-    type: string
-    required: true
-
-  compartment_ocid:
-    title: "Compartment ID"
-    description: "The Oracle Cloud Identifier for the currently selected compartment"
-    visible: false
-    type: string
-    required: true
-
-  region:
-    title: "Region"
-    description: "The region identifier for the currently selected region"
-    visible: false
-    type: string
-    required: true
-
   class:
     title: "Classification"
     description: "Selecting the Universal Credit Consumption (UCC) Model preselects appropriate resource types"
