@@ -11,17 +11,16 @@ locale: "en"
 
 variableGroups:
 - title: "Settings"
-  visible: true
   variables:
   - tenancy_ocid
   - class
 
 - title: "Hidden"
-  visible: false
   variables:
   - compartment_ocid
   - current_user_ocid
   - region
+  visible: false
 
 variables:
 # Oracle Cloud Settings
