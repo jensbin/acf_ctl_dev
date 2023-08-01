@@ -12,9 +12,36 @@ logoUrl: https://imgur.com/5VPX3M0
 
 locale: "en"
 variableGroups:
-  - title: "Service Blueprint"
+  - title: "Tenant Configuration"
     variables:
-      - ${class}
+      - ${cls}
+      - ${prt}
+      - ${lcl}
+      - ${org}
+      - ${prj}
+      - ${own}
+      - ${stg}
+      - ${src}
+
+  - title: "Components"
+    variables:
+      - ${foundation}
+      - ${smart}
+      - ${capi}
+
+  - title: "Network Options"
+    visible: true
+    variables:
+      - ${ipv6}
+      - ${internet}
+      - ${nat}
+      - ${osn}
+
+  - title: "Deployment Protection"
+    visible: true
+    variables:
+      - ${protect}
+
   - title: "Hidden"
     variables:
       - tenancy_ocid
@@ -25,7 +52,31 @@ variableGroups:
 
 
 variables:
-  class:
+  tenancy_ocid:
+    title: "Tenancy ID"
+    description: "The Oracle Cloud Identifier for the active tenancy"
+    type: string
+    required: true
+  
+  compartment_ocid:
+    title: "Compartment ID"
+    description: "The Oracle Cloud Identifier for the active compartment"
+    type: string
+    required: true
+  
+  region:
+    title: "Region"
+    description: "The name for the active region"
+    type: string
+    required: true
+  
+  current_user_ocid:
+    title: "User ID"
+    description: "The Oracle Cloud Identifier for the active user"
+    type: string
+    required: true
+  
+  cls:
     title: "Classification"
     description: "Selecting the deployment model preselects appropriate resource parameter"
     type: enum
@@ -35,4 +86,125 @@ variables:
       - Developer Sandbox
       - User Acceptance
       - Production Environment
+    required: true
+  
+  prt:
+    title: "Parent Compartment"
+    description: "The Oracle Cloud Identifier for the parent compartment. The default should only be changed by experienced users."
+    type: oci:identity:compartment:id
+    dependsOn:
+      compartmentId: tenancy_ocid
+      accessLevel: ANY
+      lifecycleState: ACTIVE
+    default: tenancy_ocid
+    required: true
+
+  org:
+    title: "Organization"
+    description: "The organization represents an unique identifier for a service owner and triggers the definition of groups on root compartment level"
+    type: string
+    default: "Organization"
+    minLength: 1
+    maxLength: 25
+    pattern: "^[a-zA-Z]+$"
+    required: true
+    
+  lcl:
+    title: "Target Region"
+    description: "..."
+    type: oci:identity:region:name
+    dependsOn:
+      compartmentId: tenancy_ocid
+      accessLevel: ANY
+      lifecycleState: ACTIVE
+    default: region
+    required: true
+
+  prj:
+    title: "Project"
+    description: "The project name represents an unique identifier for a service defined on root compartment level"
+    type: string
+    default: "Name"
+    minLength: 1
+    maxLength: 25
+    pattern: "^[a-zA-Z]+$"
+    required: true
+
+  stg:
+    title: "Lifecycle Stage"
+    description: "Selecting the lifecycle stage preselects an appropriate collection of operational controls"
+    type: enum
+    default: "DEV"
+    required: true
+    enum:
+      - DEV
+      - SIT
+      - UAT
+      - PROD
+
+  src:
+    title: "ACP source URL"
+    description: "Provide an URL for the ACP image"
+    type: string
+    required: false
+
+  own:
+    title: "Owner"
+    description: "Provide an eMail address for the technical administrator"
+    type: string
+    default: "RobotNotExist@avaloq.com"
+    required: false
+
+# Service Topology
+  foundation:
+    type: boolean
+    title: "Foundation"
+    default: true
+    required: true
+
+  smart:
+    type: boolean
+    title: "SmartClient"
+    default: false
+    required: false
+
+  capi:
+    type: boolean
+    title: "Community API"
+    default: false
+    required: false
+
+# Network Options
+  ipv6:
+    type: boolean
+    title: "IPv6"
+    required: true
+    default: false
+
+  internet:
+    type: boolean
+    title: "Internet access"
+    required: true
+    default: false
+
+  nat:
+    type: boolean
+    title: "NAT for private subnets"
+    required: true
+    default: true
+
+  osn:
+    type: enum
+    title: "Scope of Oracle Cloud Services, attached to the service resident."
+    required: true
+    enum:
+      - ALL
+      - STORAGE
+      - DISABLE
+
+# Administration Domains
+  protect:
+    type: boolean
+    title: "Allow administrator domains to be destroyed?"
+    default: false
     required: true

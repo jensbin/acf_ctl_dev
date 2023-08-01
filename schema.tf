@@ -8,6 +8,98 @@ variable "region" {}
 variable "current_user_ocid" {}
 
 // Compartment Classification
-variable "class" {
+variable "cls" {
   type = string
+}
+
+// Resident Configuration
+variable "prt" {
+  type = string
+  description = "The Oracle Cloud Identifier (OCID) for a parent compartment, an encapsulating child compartment will be created to define the service resident. Usually this is the root compartment, hence the tenancy OCID."
+}
+
+variable "org" { 
+  type        = string
+  description = "The organization represents an unique identifier for a service owner and triggers the definition of groups on root compartment level"
+}
+
+variable "prj" { 
+  type        = string
+  description = "The project name represents an unique identifier for a service defined on root compartment level"
+}
+
+variable "src" {
+  type        = string
+  description = "The ACP source is an URI for the ACP image"
+}
+
+variable "own" {
+  type        = string
+  description = "The technical owner identifies the main administrator by his or her eMail address"
+}
+
+variable "stage"           { 
+  type = string
+  description = "The stage variable triggers lifecycle related resources to be provisioned"
+  validation {
+    condition     = length(regexall("^[A-Za-z][A-Za-z0-9]{1,3}$", var.stage)) > 0
+    error_message = "A service_name variable is required and must contain alphanumeric characters only, start with a letter and 4 character max."
+  }
+}
+
+variable "lcal" {
+  type        = string
+  description = "The locations triggers the target region for a service deployment"
+  default     = "eu-zurich-1"
+}
+
+# Components
+variable "foundation" {
+  type        = bool
+  description = "Deploying the ACP foundation, incl. AMI and BDE"
+  default     = true
+}
+
+variable "smart" {
+  type        = bool
+  description = "Deploying SmartClient together with the integration server"
+  default     = true
+}
+
+variable "capi" {
+  type        = bool
+  description = "Deploying the community API"
+  default     = true
+}
+
+# Domain Protection
+variable "protect" {
+  type        = bool
+  description = "The flag enables operators to delete compartments with terraform destroy. For production deployments, this flag should be disabled."
+  default     = true
+}
+
+# Network Settings
+variable "internet" {
+  type        = bool
+  description = "Allows or disallows to provision resources with public IP addresses."
+  default     = true
+}
+
+variable "nat" {
+  type        = bool
+  description = "Enables or disables routes through a NAT Gateway."
+  default     = true
+}
+
+variable "ipv6" {
+  type        = bool
+  description = "Triggers the release of IPv6 addresses inside the VCN."
+  default     = false
+}
+
+variable "osn" {
+  type = string
+  description = "Configures the scope for the service gateway"
+  default     = "ALL"
 }
