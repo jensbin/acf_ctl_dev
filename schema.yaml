@@ -9,8 +9,7 @@ variables:
     title: "Classification"
     description: "Selecting the Universal Credit Consumption (UCC) Model preselects appropriate resource types"
     type: enum
-    default: "FREE_TIER"
-    required: true
+    default: FREE_TIER
     enum:
       - FREE_TIER
       - TRIAL
