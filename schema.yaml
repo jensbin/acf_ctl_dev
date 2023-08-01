@@ -146,6 +146,7 @@ variables:
     title: "ACP source URL"
     description: "Provide an URL for the ACP image"
     type: string
+    default: "Please provide a source URL for your ACP image"
     required: false
 
   own:
