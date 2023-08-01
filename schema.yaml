@@ -7,7 +7,8 @@ schemaVersion: 1.1.0
 version: "20230801"
 
 # URL of Logo Icon used on Application Information tab. Logo must be 130x130 pixels.
-logoUrl: https://cloudmarketplace.oracle.com/marketplace/content?contentId=53066708
+# logoUrl: https://cloudmarketplace.oracle.com/marketplace/content?contentId=53066708
+logoUrl: https://imgur.com/5VPX3M0
 
 locale: "en"
 variableGroups:
@@ -34,3 +35,4 @@ variables:
       - Developer Sandbox
       - User Acceptance
       - Production Environment
+    required: true
