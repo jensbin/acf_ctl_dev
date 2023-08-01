@@ -3,5 +3,5 @@
 
 # Tenancy Classification
 variable "class" {
-  type: string
+  type = string
 }
