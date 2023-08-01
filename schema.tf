@@ -2,4 +2,6 @@
 // Licensed under the Apache 2.0 license shown at https://www.apache.org/licenses/LICENSE-2.0
 
 # Tenancy Classification
-variable "class" {}
+variable "class" {
+  type: string
+}
