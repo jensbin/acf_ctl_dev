@@ -6,27 +6,17 @@
 terraform {
   required_providers {
     oci = {
-      source = "hashicorp/oci"
-    }
-    google = {
-      source = "hashicorp/google"
+      source = "oracle/oci"
     }
   }
 }
 
-/*
 provider "oci" {
   alias  = "home"
-  region = module.configuration.tenancy.region.key
+  region = var.region
 }
 
 provider "oci" {
-  alias  = "service"
-  region = var.location
+  alias  = "target"
+  region = var.lcl
 }
-
-provider "google" {
-  project = "avc-dev"
-  region  = "us-central1"
-}
-*/
