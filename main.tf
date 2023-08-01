@@ -3,13 +3,6 @@
 
 // readme.md created with https://terraform-docs.io/: terraform-docs markdown --sort=false ./ > ./readme.md
 
-/*/ --- settings --- //
-variable "tenancy_ocid" {}
-variable "compartment_ocid" {}
-variable "region" {}
-variable "current_user_ocid" {}
-// --- settings --- /*/
-
 /*/ --- schema --- //
 locals {
   topologies = flatten(compact([

@@ -14,11 +14,19 @@ variableGroups:
   - title: "Service Blueprint"
     variables:
       - ${class}
+  - title: "Hidden"
+    variables:
+      - tenancy_ocid
+      - compartment_ocid
+      - region
+      - current_user_ocid
+    visible: false
+
 
 variables:
   class:
     title: "Classification"
-    description: "Selecting the Universal Credit Consumption (UCC) Model preselects appropriate resource types"
+    description: "Selecting the deployment model preselects appropriate resource parameter"
     type: enum
     default: "Custom Sandbox"
     enum:
