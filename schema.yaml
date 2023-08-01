@@ -3,12 +3,12 @@ title: Avaloq Cloud Framework
 # Sub Title shown in Application Information tab.
 description: The Avaloq Cloud Framework helps to deploy banking services in the cloud
 informationalText: This framework helps operators to set up a hosting environment for banking applications on cloud infrastructure. A base set of resources is provisioned and configured.
-schemaVersion: 0.0.2
+schemaVersion: 1.1.0
 version: "20230801"
 
 # URL of Logo Icon used on Application Information tab. Logo must be 130x130 pixels.
-# logoUrl: https://cloudmarketplace.oracle.com/marketplace/content?contentId=53066708
-logoUrl: https://imgur.com/TqZbJuY
+logoUrl: https://cloudmarketplace.oracle.com/marketplace/content?contentId=53066708
+# logoUrl: https://imgur.com/TqZbJuY
 
 locale: "en"
 variableGroups:
