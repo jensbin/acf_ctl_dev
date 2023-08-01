@@ -5,5 +5,4 @@
 variable "class" {
   type        = string
   description = "The contract classification reflects common service limits during resource deployments"
-  default     = "PAYG"
 }

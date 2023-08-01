@@ -12,7 +12,7 @@ locale: "en"
 variableGroups:
   - title: "Account"
     variables:
-      - class
+      - {$class}
   - title: "Hidden"
     variables:
       - tenancy_ocid
