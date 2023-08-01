@@ -2,7 +2,7 @@
 title: Avaloq Cloud Framework
 # Sub Title shown in Application Information tab.
 description: The Avaloq Cloud Framework helps to deploy banking services in the cloud
-informationalText: Sample informational text to display in tab...
+informationalText: This framework helps operators to set up a hosting environment for banking applications on cloud infrastructure. A base set of resources is provisioned and configured.
 schemaVersion: 1.1.0
 version: "20190304"
 
