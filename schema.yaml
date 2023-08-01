@@ -181,7 +181,7 @@ variables:
     required: true
     default: false
 
-  internet:
+  inet:
     type: boolean
     title: "Internet access"
     required: true
