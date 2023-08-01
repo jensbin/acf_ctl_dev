@@ -21,9 +21,9 @@ variables:
     title: "Classification"
     description: "Selecting the Universal Credit Consumption (UCC) Model preselects appropriate resource types"
     type: enum
-    default: "Custom Sandbox"
+    default: "CustomSandbox"
     enum:
-      - Custom Sandbox
-      - Developer Sandbox
-      - User Acceptance
+      - CustomSandbox
+      - DeveloperSandbox
+      - UserAcceptance
       - Production
