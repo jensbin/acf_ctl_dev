@@ -1,7 +1,7 @@
 # Title shown in Application Information tab.
-title: Sample input variable schema
+title: Avaloq Cloud Framework
 # Sub Title shown in Application Information tab.
-description: Sample description...
+description: The Avaloq Cloud Framework helps to deploy banking services in the cloud
 informationalText: Sample informational text to display in tab...
 schemaVersion: 1.1.0
 version: "20190304"
