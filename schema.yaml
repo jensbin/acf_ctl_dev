@@ -1,15 +1,27 @@
-title: "Avaloq Cloud Framwork"
+# Title shown in Application Information tab.
+title: Sample input variable schema
+# Sub Title shown in Application Information tab.
+description: Sample description...
+informationalText: Sample informational text to display in tab...
+schemaVersion: 1.1.0
+version: "20190304"
+
+# URL of Logo Icon used on Application Information tab. Logo must be 130x130 pixels.
+# (Optional)
+logoUrl: https://cloudmarketplace.oracle.com/marketplace/content?contentId=53066708
+
+locale: "en"
 variableGroups:
-  - title: "Account"
+  - title: "Node Configuration"
     variables:
-      - {$class}
+      - ${class}
 
 variables:
   class:
     title: "Classification"
     description: "Selecting the Universal Credit Consumption (UCC) Model preselects appropriate resource types"
     type: enum
-    default: FREE_TIER
+    default: "FREE_TIER"
     enum:
       - FREE_TIER
       - TRIAL
