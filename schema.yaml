@@ -25,7 +25,6 @@ variables:
     title: "TenancyID"
     description: "The Oracle Cloud Identifier for your tenancy"
     type: string
-    visible: false
     required: true
     
   compartment_ocid:
