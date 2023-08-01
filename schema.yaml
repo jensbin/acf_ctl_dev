@@ -33,7 +33,7 @@ variableGroups:
     visible: true
     variables:
       - ${ipv6}
-      - ${internet}
+      - ${inet}
       - ${nat}
       - ${osn}
 
@@ -155,7 +155,7 @@ variables:
     default: "RobotNotExist@avaloq.com"
     required: false
 
-# Service Topology
+# Components
   foundation:
     type: boolean
     title: "Foundation"
@@ -202,7 +202,7 @@ variables:
       - STORAGE
       - DISABLE
 
-# Administration Domains
+# Domain Protection
   protect:
     type: boolean
     title: "Allow administrator domains to be destroyed?"
