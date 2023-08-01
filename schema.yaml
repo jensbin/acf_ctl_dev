@@ -23,7 +23,7 @@ variables:
     type: enum
     default: "Custom Sandbox"
     enum:
-      - "Custom Sandbox"
-      - "Developer Sandbox"
-      - "User Acceptance Test"
-      - "Production"
+      - Custom Sandbox
+      - Developer Sandbox
+      - User Acceptance
+      - Production
