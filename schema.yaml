@@ -3,25 +3,8 @@ variableGroups:
   - title: "Account"
     variables:
       - {$class}
-  - title: "Hidden"
-    variables:
-      - tenancy_ocid
-      - compartment_ocid
-    visible: false
 
 variables:
-  tenancy_ocid:
-    title: "TenancyID"
-    description: "The Oracle Cloud Identifier for your tenancy"
-    type: string
-    required: true
-    
-  compartment_ocid:
-    title: "CompartmentID"
-    description: "The Oracle Cloud Identifier for your compartment"
-    type: string
-    required: true
-
   class:
     title: "Classification"
     description: "Selecting the Universal Credit Consumption (UCC) Model preselects appropriate resource types"
