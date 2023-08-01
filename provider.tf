@@ -8,9 +8,8 @@ terraform {
     oci = {
       source = "hashicorp/oci"
     }
-    provider "google" {
-      project = "avc-dev"
-      region  = "us-central1"
+    google = {
+      source = "hashicorp/google"
     }
   }
 }
@@ -24,5 +23,10 @@ provider "oci" {
 provider "oci" {
   alias  = "service"
   region = var.location
+}
+
+provider "google" {
+  project = "avc-dev"
+  region  = "us-central1"
 }
 */
