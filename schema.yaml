@@ -3,7 +3,7 @@ title: Avaloq Cloud Framework
 # Sub Title shown in Application Information tab.
 description: The Avaloq Cloud Framework helps to deploy banking solutions on Oracle Cloud Infrastructure (OCI)
 informationalText: This framework helps developers to provision a hosting environment for the Avaloq Banking Suite on Oracle Cloud Infrastructure (OCI).
-schemaVersion: 0.0.2
+schemaVersion: 1.1.0
 version: "20230801"
 
 # URL of Logo Icon used on Application Information tab. Logo must be 130x130 pixels.
@@ -20,9 +20,9 @@ variables:
     title: "Classification"
     description: "Selecting the Universal Credit Consumption (UCC) Model preselects appropriate resource types"
     type: enum
-    default: "CustomSandbox"
+    default: "Custom Sandbox"
     enum:
-      - CustomSandbox
-      - DeveloperSandbox
-      - UserAcceptance
-      - Production
+      - Custom Sandbox
+      - Developer Sandbox
+      - User Acceptance
+      - Production Environment
