@@ -3,19 +3,18 @@
 
 // readme.md created with https://terraform-docs.io/: terraform-docs markdown --sort=false ./ > ./readme.md
 
-/*/ --- schema --- //
+// --- schema --- //
 locals {
-  topologies = flatten(compact([
-    var.management == true ? "management" : "", 
-    var.host == true ? "host" : "", 
-    var.nodes == true ? "nodes" : "", 
-    var.container == true ? "container" : ""
+  components = flatten(compact([
+    var.acp == true ? "acp" : "", 
+    var.client == true ? "client" : "",  
+    var.capi == true ? "capi" : ""
   ]))
-  domains    = jsondecode(file("${path.module}/default/resident/domains.json"))
-  segments   = jsondecode(file("${path.module}/default/network/segments.json"))
-  wallets    = jsondecode(file("${path.module}/default/encryption/wallets.json"))
 }
-// --- schema --- /*/
+output "components" {
+  value = local.components
+}
+// --- schema --- //
 
 /*/ --- configuration --- //
 module "configuration" {

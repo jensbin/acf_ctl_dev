@@ -23,10 +23,10 @@ variableGroups:
       - ${stg}
       - ${src}
 
-  - title: "Components"
+  - title: "Avaloq Banking Suite"
     variables:
-      - ${foundation}
-      - ${smart}
+      - ${acp}
+      - ${client}
       - ${capi}
 
   - title: "Network Options"
@@ -156,14 +156,14 @@ variables:
     default: "RobotNotExist@avaloq.com"
     required: false
 
-# Components
-  foundation:
+# Avaloq Banking Suite
+  acp:
     type: boolean
-    title: "Foundation"
+    title: "Core Platform"
     default: true
     required: true
 
-  smart:
+  client:
     type: boolean
     title: "SmartClient"
     default: false

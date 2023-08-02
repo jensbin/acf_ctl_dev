@@ -49,12 +49,12 @@ variable "lcl" {
 }
 
 # Components
-variable "foundation" {
+variable "acp" {
   type        = bool
   description = "Deploying the ACP foundation, incl. AMI and BDE"
 }
 
-variable "smart" {
+variable "client" {
   type        = bool
   description = "Deploying SmartClient together with the integration server"
 }
