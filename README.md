@@ -7,20 +7,8 @@
 
 The Avaloq Cloud Framework (ACF) is a collection of deployment scripts that connect cloud services running on Azure, AWS or Google with applications running on Oracle Cloud Infrastructure (OCI). [![License](https://img.shields.io/badge/license-apache-green)](https://www.apache.org/licenses/LICENSE-2.0)
 
-## Development Core
+## Development Module
 The development version of the core module enables operations engineers to develop a set of deployment parameter and the respective resource configurations without appplying these configuration in deployment scripts. It acclerates the development process, because engineers can create and check the valid output against the service provider definitions without invoking the cloud controller.   
-
-## Configuration Module
-A root configuration module initializes a base set of re-usable topology configurations that serve different use cases. The configuration module doesn`t create any resources but resource definitions for cloud provider specific provisioning modules, it makes Terraform settings dynamic, taking cloud controller input and dependencies into account to output template configuration data. Deployment modules invoke elements of configuration data that are be unique and specific to a particular deployment, but generally represents elements of configuration that are used across different implementations. Some examples of this include:
-
-- Resource naming conventions
-- On-premises IP ranges for resource firewalls
-- Groups for RBAC roles
-
-In the configuration module these parameter are captured in JSON format and stored in the '/param' directory. The configuration module parses parameters through with the terraform engine to create the resource blocks that inherit use case realted dependencies. Instead of client specific scripts, use case specific parameter is applied to a harmonized logic.
-
-## Parameterization
-...
 
 ## Contributing
 This project is a community project the code is open source.  Please submit your contributions by forking this repository and submitting a pull request!  Avaloq appreciates any contributions that are made by the open source community.
