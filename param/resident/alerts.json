@@ -1,9 +1,0 @@
-[
-  {
-    "name"        : "alert",
-    "description" : "description",
-    "measure"     : "measure",
-    "threshold"   : 0,
-    "budget"      : "budget_name"
-  }
-]

@@ -1,7 +1,0 @@
-[
-    {
-      "name"        : "zone",
-      "description" : "zone_description",
-      "cidr"        : "172.16.0.0/12"
-    }
-]

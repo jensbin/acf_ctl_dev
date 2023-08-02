@@ -1,8 +1,0 @@
-[
-    {
-      "name"        : "filesystem",
-      "description" : "filesystem_instance",
-      "class"       : 0,
-      "stage"       : 0
-    }
-]
