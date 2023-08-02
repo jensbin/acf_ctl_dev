@@ -80,11 +80,11 @@ variables:
     title: "Classification"
     description: "Selecting the deployment model preselects appropriate resource parameter"
     type: enum
-    default: "Custom Sandbox"
+    default: "Developer Sandbox"
     enum:
-      - Custom Sandbox
       - Developer Sandbox
-      - User Acceptance
+      - Development Environment
+      - Acceptance Testing
       - Production Environment
     required: true
   

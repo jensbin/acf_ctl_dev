@@ -3,22 +3,9 @@
 
 // readme.md created with https://terraform-docs.io/: terraform-docs markdown --sort=false ./ > ./readme.md
 
-// --- schema --- //
-locals {
-  components = flatten(compact([
-    var.acp == true ? "acp" : "", 
-    var.client == true ? "client" : "",  
-    var.capi == true ? "capi" : ""
-  ]))
-}
-output "components" {
-  value = local.components
-}
-// --- schema --- //
-
-/*/ --- configuration --- //
+// --- configuration --- //
 module "configuration" {
-  source         = "./default/"
+  source         = "../config/"
   providers = {oci = oci.service}
   account = {
     tenancy_id     = var.tenancy_ocid
@@ -26,28 +13,23 @@ module "configuration" {
     home           = var.region
     user_id        = var.current_user_ocid
   }
-  resident = {
-    topologies = local.topologies
-    domains    = local.domains
-    segments   = local.segments
-  }
-  solution = {
-    adb          = "${var.adb_type}_${var.adb_size}"
-    budget       = var.budget
-    class        = var.class
-    encrypt      = var.create_wallet
-    name         = var.name
-    region       = var.location
-    organization = var.organization
-    osn          = var.osn
-    owner        = var.owner
-    repository   = var.repository
-    stage        = var.stage
-    tenancy      = var.tenancy_ocid
-    wallet       = var.wallet
+  schema = {
+    class        = var.cls
+    parent       = var.prt
+    location     = var.lcl
+    organization = var.org
+    project      = var.prj
+    owner        = var.own
+    stage        = var.stg
+    source       = var.src
+    scope = flatten(compact([
+      var.acp    == true ? "acp" : "", 
+      var.client == true ? "client" : "",  
+      var.capi   == true ? "capi" : ""
+    ]))
   }
 }
-// --- configuration --- /*/
+// --- configuration --- //
 
 /*/ --- operation controls --- //
 module "resident" {
