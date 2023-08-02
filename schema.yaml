@@ -1,100 +1,96 @@
-# Copyright (c) 2023 Avaloq and/or its affiliates.
-# Licensed under the Apache 2.0 license shown at https://www.apache.org/licenses/LICENSE-2.0.
-
-
-title: "ocloud Framwork: Service Configuration"
-description: "The ocloud framwork creates a foundation for application deployments in Oracle Cloud Infrastructure"
-informationalText: "This framework helps operators to set up a hosting environment for enterprise applications in Oracle Cloud Infrastructure (OCI). A base set of resources is provisioned and configured."
+# Title shown in Application Information tab.
+title: Avaloq Cloud Framework
+# Sub Title shown in Application Information tab.
+description: The Avaloq Cloud Framework helps to deploy banking solutions on Oracle Cloud Infrastructure (OCI)
+informationalText: This framework helps developers to provision a hosting environment for the Avaloq Banking Suite on Oracle Cloud Infrastructure (OCI).
 schemaVersion: 1.1.0
-version: "20210611"
+version: "20230801"
+
+# URL of Logo Icon used on Application Information tab. Logo must be 130x130 pixels.
+# logoUrl: https://cloudmarketplace.oracle.com/marketplace/content?contentId=53066708
+logoUrl: https://imgur.com/5VPX3M0
+
 locale: "en"
-
 variableGroups:
-- title: "Tenancy"
-  visible: true
-  variables:
-  - tenancy_ocid
-  - class
+  - title: "Tenant Configuration"
+    variables:
+      - ${cls}
+      - ${prt}
+      - ${lcl}
+      - ${org}
+      - ${prj}
+      - ${own}
+      - ${stg}
+      - ${src}
 
-- title: "Service Resident"
-  visible: true
-  variables:
-  - parent
-  - compartment_ocid
-  - region
-  - current_user_ocid
-  - organization
-  - solution
-  - owner
-  - stage
-  - repository
+  - title: "Components"
+    variables:
+      - ${foundation}
+      - ${smart}
+      - ${capi}
 
-- title: "Service Topology"
-  visible: true
-  variables:
-  - host
-  - nodes
-  - container
+  - title: "Network Options"
+    visible: true
+    variables:
+      - ${ipv6}
+      - ${inet}
+      - ${nat}
+      - ${osn}
 
-- title: "Network Options"
-  visible: true
-  variables:
-  - ipv6
-  - internet
-  - nat
-  - osn
+  - title: "Deployment Protection"
+    visible: true
+    variables:
+      - ${protect}
 
-- title: "Domain Settings"
-  visible: true
-  variables:
-  - amend
+  - title: "Hidden"
+    variables:
+      - tenancy_ocid
+      - compartment_ocid
+      - region
+      - current_user_ocid
+    visible: false
+
 
 variables:
-# Tenancy
   tenancy_ocid:
     title: "Tenancy ID"
-    description: "The Oracle Cloud Identifier for your tenancy"
-    visible: false
+    description: "The Oracle Cloud Identifier for the active tenancy"
     type: string
     required: true
-
-  class:
-    title: "Classification"
-    description: "Selecting the Universal Credit Consumption (UCC) Model preselects appropriate resource types"
-    type: enum
-    default: "FREE_TIER"
-    required: true
-    enum:
-      - FREE_TIER
-      - TRIAL
-      - PAYG
-      - UCC
-
-# Service Configuration
+  
   compartment_ocid:
     title: "Compartment ID"
-    description: "The Oracle Cloud Identifier for your compartment"
-    visible: false
+    description: "The Oracle Cloud Identifier for the active compartment"
     type: string
     required: true
-
+  
   region:
-    title: "Home Region"
-    description: "The Oracle Cloud Identifier for your home region"
-    visible: false
+    title: "Region"
+    description: "The name for the active region"
     type: string
     required: true
   
   current_user_ocid:
     title: "User ID"
-    description: "The Oracle Cloud Identifier for the current user"
-    visible: false
+    description: "The Oracle Cloud Identifier for the active user"
     type: string
     required: true
   
-  parent:
+  cls:
+    title: "Classification"
+    description: "Selecting the deployment model preselects appropriate resource parameter"
+    type: enum
+    default: "Custom Sandbox"
+    enum:
+      - Custom Sandbox
+      - Developer Sandbox
+      - User Acceptance
+      - Production Environment
+    required: true
+  
+  prt:
     title: "Parent Compartment"
-    description: "The Oracle Cloud Identifier for the root compartment. The default should only be changed by experienced users."
+    description: "The Oracle Cloud Identifier for the parent compartment. The default should only be changed by experienced users."
     type: oci:identity:compartment:id
     dependsOn:
       compartmentId: tenancy_ocid
@@ -103,27 +99,38 @@ variables:
     default: tenancy_ocid
     required: true
 
-  organization:
+  org:
     title: "Organization"
-    description: "Identifier for the organization, owning the service"
+    description: "The organization represents an unique identifier for a service owner and triggers the definition of groups on root compartment level"
     type: string
     default: "Organization"
     minLength: 1
     maxLength: 25
     pattern: "^[a-zA-Z]+$"
     required: true
+    
+  lcl:
+    title: "Target Region"
+    description: "..."
+    type: oci:identity:region:name
+    dependsOn:
+      compartmentId: tenancy_ocid
+      accessLevel: ANY
+      lifecycleState: ACTIVE
+    default: region
+    required: true
 
-  solution:
-    title: "Name"
-    description: "Identifier for the service, the name should be unique within the tenancy"
+  prj:
+    title: "Project"
+    description: "The project name represents an unique identifier for a service defined on root compartment level"
     type: string
-    default: "Service"
+    default: "Name"
     minLength: 1
     maxLength: 25
     pattern: "^[a-zA-Z]+$"
     required: true
 
-  stage:
+  stg:
     title: "Lifecycle Stage"
     description: "Selecting the lifecycle stage preselects an appropriate collection of operational controls"
     type: enum
@@ -131,35 +138,41 @@ variables:
     required: true
     enum:
       - DEV
+      - SIT
       - UAT
       - PROD
 
-  repository:
-    title: "Source Code URL"
-    description: "Provide an URL to your IaC repository"
+  src:
+    title: "ACP source URL"
+    description: "Provide an URL for the ACP image"
     type: string
+    default: "URL"
     required: false
 
-  owner:
+  own:
     title: "Owner"
     description: "Provide an eMail address for the technical administrator"
     type: string
+    default: "RobotNotExist@avaloq.com"
+    required: false
+
+# Components
+  foundation:
+    type: boolean
+    title: "Foundation"
+    default: true
     required: true
 
-# Service Topology
-  host:
+  smart:
     type: boolean
-    title: "Enterprise Service"
+    title: "SmartClient"
+    default: false
     required: false
 
-  nodes:
+  capi:
     type: boolean
-    title: "Cloud Service"
-    required: false
-
-  container:
-    type: boolean
-    title: "Container Service"
+    title: "Community API"
+    default: false
     required: false
 
 # Network Options
@@ -169,21 +182,17 @@ variables:
     required: true
     default: false
 
-  internet:
-    type: enum
+  inet:
+    type: boolean
     title: "Internet access"
     required: true
-    enum:
-      - ENABLE
-      - DISABLE
+    default: false
 
   nat:
-    type: enum
+    type: boolean
     title: "NAT for private subnets"
     required: true
-    enum:
-      - ENABLE
-      - DISABLE
+    default: true
 
   osn:
     type: enum
@@ -194,8 +203,9 @@ variables:
       - STORAGE
       - DISABLE
 
-# Administration Domains
-  amend:
+# Domain Protection
+  protect:
     type: boolean
     title: "Allow administrator domains to be destroyed?"
+    default: false
     required: true
