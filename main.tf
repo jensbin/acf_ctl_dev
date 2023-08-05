@@ -15,11 +15,11 @@ module "configuration" {
   }
   schema = {
     class        = local.class[var.cls]
-    parent       = var.prt
     location     = var.lcl
     organization = var.org
-    project      = var.prj
     owner        = var.own
+    parent       = var.prt
+    project      = var.prj
     services     = local.osn[var.osn]
     stage        = local.stage[var.stg]
     source       = var.src
