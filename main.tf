@@ -3,7 +3,7 @@
 
 // readme.md created with https://terraform-docs.io/: terraform-docs markdown --sort=false ./ > ./readme.md
 
-// --- configuration --- //
+/*/ --- configuration --- //
 module "configuration" {
   source         = "../config/"
   providers = {oci = oci.service}
@@ -29,7 +29,7 @@ module "configuration" {
     ]))
   }
 }
-
+*/
 output "account" {
   value = {
     tenancy_id     = var.tenancy_ocid
