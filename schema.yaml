@@ -32,7 +32,6 @@ variableGroups:
   - title: "Network Options"
     visible: true
     variables:
-      - ${ipv6}
       - ${inet}
       - ${nat}
       - ${osn}
@@ -53,13 +52,13 @@ variableGroups:
 
 variables:
   tenancy_ocid:
-    title: "Tenancy ID"
+    title: "Tenancy"
     description: "The Oracle Cloud Identifier for the active tenancy"
     type: string
     required: true
   
   compartment_ocid:
-    title: "Compartment ID"
+    title: "Compartment"
     description: "The Oracle Cloud Identifier for the active compartment"
     type: string
     required: true
@@ -77,15 +76,14 @@ variables:
     required: true
   
   cls:
-    title: "Classification"
+    title: "Purpose"
     description: "Selecting the deployment model preselects appropriate resource parameter"
     type: enum
-    default: "Developer Sandbox"
+    default: "Sandbox"
     enum:
-      - Developer Sandbox
-      - Development Environment
-      - Acceptance Testing
-      - Production Environment
+      - Sandbox
+      - Development
+      - Production
     required: true
   
   prt:
@@ -110,7 +108,7 @@ variables:
     required: true
     
   lcl:
-    title: "Target Region"
+    title: "Region"
     description: "..."
     type: oci:identity:region:name
     dependsOn:
@@ -131,19 +129,18 @@ variables:
     required: true
 
   stg:
-    title: "Lifecycle Stage"
+    title: "Hardening"
     description: "Selecting the lifecycle stage preselects an appropriate collection of operational controls"
     type: enum
     default: "DEV"
     required: true
     enum:
       - DEV
-      - SIT
-      - UAT
+      - TEST
       - PROD
 
   src:
-    title: "ACP source URL"
+    title: "Source"
     description: "Provide an URL for the ACP image"
     type: string
     default: "URL"
@@ -176,12 +173,6 @@ variables:
     required: false
 
 # Network Options
-  ipv6:
-    type: boolean
-    title: "IPv6"
-    required: true
-    default: false
-
   inet:
     type: boolean
     title: "Internet access"

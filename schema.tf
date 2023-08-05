@@ -81,11 +81,6 @@ variable "nat" {
   description = "Enables or disables routes through a NAT Gateway."
 }
 
-variable "ipv6" {
-  type        = bool
-  description = "Triggers the release of IPv6 addresses inside the VCN."
-}
-
 variable "osn" {
   type = string
   description = "Configures the scope for the service gateway"
