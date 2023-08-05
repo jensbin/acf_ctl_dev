@@ -6,7 +6,7 @@
 // --- configuration --- //
 module "configuration" {
   source         = "github.com/avaloqcloud/acf_ctl_config"
-  providers = {oci = oci.service}
+  providers = {oci = oci.home}
   account = {
     tenancy_id     = var.tenancy_ocid
     compartment_id = var.compartment_ocid
