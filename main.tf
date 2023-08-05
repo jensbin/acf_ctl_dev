@@ -3,9 +3,9 @@
 
 // readme.md created with https://terraform-docs.io/: terraform-docs markdown --sort=false ./ > ./readme.md
 
-/*/ --- configuration --- //
+// --- configuration --- //
 module "configuration" {
-  source         = "../config/"
+  source         = "github.com/avaloqcloud/acf_ctl_config"
   providers = {oci = oci.service}
   account = {
     tenancy_id     = var.tenancy_ocid
@@ -14,32 +14,6 @@ module "configuration" {
     user_id        = var.current_user_ocid
   }
   schema = {
-    class        = var.cls
-    parent       = var.prt
-    location     = var.lcl
-    organization = var.org
-    project      = var.prj
-    owner        = var.own
-    stage        = var.stg
-    source       = var.src
-    scope = flatten(compact([
-      var.acp    == true ? "acp" : "", 
-      var.client == true ? "client" : "",  
-      var.capi   == true ? "capi" : ""
-    ]))
-  }
-}
-*/
-output "account" {
-  value = {
-    tenancy_id     = var.tenancy_ocid
-    compartment_id = var.compartment_ocid
-    home           = var.region
-    user_id        = var.current_user_ocid
-  }
-}
-output "schema" {
-  value = {
     class        = var.cls
     parent       = var.prt
     location     = var.lcl
