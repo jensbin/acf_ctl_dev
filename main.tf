@@ -29,6 +29,9 @@ module "configuration" {
     ]))
   }
 }
+output "configuration" {
+  value = {for resource, parameter in module.configuration : resource => parameter}
+}
 // --- configuration --- //
 
 /*/ --- operation controls --- //
