@@ -24,3 +24,31 @@ provider "oci" {
   alias  = "target"
   region = var.lcl
 }
+
+data "oci_core_services" "all" {
+    filter {
+        name   = "name"
+        values = ["All .* Services In Oracle Services Network"]
+        regex  = true
+    }
+}
+
+data "oci_core_services" "storage" {
+    filter {
+        name   = "name"
+        values = ["OCI .* Object Storage"]
+        regex  = true
+    }
+}
+
+locals {
+  stage = {
+    "DEV"  = 1
+    "TEST" = 2
+    "PROD" = 3
+  }
+  osn = {
+    "all"     = lookup(data.oci_core_services.all.services[0], "id")
+    "storage" = lookup(data.oci_core_services.storage.services[0], "id")
+  }
+}
