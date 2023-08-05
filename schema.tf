@@ -43,7 +43,7 @@ variable "stg"           {
   description = "The stage variable triggers lifecycle related resources to be provisioned"
 }
 
-variable "lcl" {
+variable "loc" {
   type        = string
   description = "The locations triggers the target region for a service deployment"
 }

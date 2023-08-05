@@ -16,7 +16,7 @@ variableGroups:
     variables:
       - ${cls}
       - ${prt}
-      - ${lcl}
+      - ${loc}
       - ${org}
       - ${prj}
       - ${own}
@@ -107,7 +107,7 @@ variables:
     pattern: "^[a-zA-Z]+$"
     required: true
     
-  lcl:
+  loc:
     title: "Region"
     description: "..."
     type: oci:identity:region:name

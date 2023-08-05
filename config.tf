@@ -22,7 +22,7 @@ provider "oci" {
 
 provider "oci" {
   alias  = "target"
-  region = var.lcl
+  region = var.loc
 }
 
 data "oci_core_services" "all" {

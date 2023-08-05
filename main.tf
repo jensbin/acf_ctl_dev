@@ -15,7 +15,7 @@ module "configuration" {
   }
   schema = {
     class        = local.class[var.cls]
-    location     = var.lcl
+    location     = var.loc
     organization = var.org
     owner        = var.own
     parent       = var.prt
