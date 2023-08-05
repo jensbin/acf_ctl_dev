@@ -29,6 +29,32 @@ module "configuration" {
     ]))
   }
 }
+
+output "account" {
+  value = {
+    tenancy_id     = var.tenancy_ocid
+    compartment_id = var.compartment_ocid
+    home           = var.region
+    user_id        = var.current_user_ocid
+  }
+}
+output "schema" {
+  value = {
+    class        = var.cls
+    parent       = var.prt
+    location     = var.lcl
+    organization = var.org
+    project      = var.prj
+    owner        = var.own
+    stage        = var.stg
+    source       = var.src
+    scope = flatten(compact([
+      var.acp    == true ? "acp" : "", 
+      var.client == true ? "client" : "",  
+      var.capi   == true ? "capi" : ""
+    ]))
+  }
+}
 // --- configuration --- //
 
 /*/ --- operation controls --- //
