@@ -53,7 +53,8 @@ locals {
     "PROD" = 3
   }
   osn = {
-    "all"     = lookup(data.oci_core_services.all.services[0], "id")
-    "storage" = lookup(data.oci_core_services.storage.services[0], "id")
+    "ALL"     = lookup(data.oci_core_services.all.services[0], "id")
+    "STORAGE" = lookup(data.oci_core_services.storage.services[0], "id")
+    "DISABLE" = "disabled"
   }
 }

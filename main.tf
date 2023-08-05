@@ -20,6 +20,7 @@ module "configuration" {
     organization = var.org
     project      = var.prj
     owner        = var.own
+    services     = local.osn[var.osn]
     stage        = local.stage[var.stg]
     source       = var.src
     scope = flatten(compact([
