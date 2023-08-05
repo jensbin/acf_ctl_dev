@@ -14,13 +14,13 @@ module "configuration" {
     user_id        = var.current_user_ocid
   }
   schema = {
-    class        = var.cls
+    class        = local.class[var.cls]
     parent       = var.prt
     location     = var.lcl
     organization = var.org
     project      = var.prj
     owner        = var.own
-    stage        = var.stg
+    stage        = local.stage[var.stg]
     source       = var.src
     scope = flatten(compact([
       var.acp    == true ? "acp" : "", 

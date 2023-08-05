@@ -42,6 +42,11 @@ data "oci_core_services" "storage" {
 }
 
 locals {
+  class = {
+    "Sandbox"     = 1
+    "Development" = 2
+    "Production"  = 3
+  }
   stage = {
     "DEV"  = 1
     "TEST" = 2
