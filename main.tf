@@ -17,20 +17,20 @@ module "configuration" {
       lower(substr(var.prj, 0, 2)),
       lower(substr(var.stg, 0, 3)),
     )
-    location = var.loc
-    name     = lower("${var.org}_${var.prj}_${var.stg}")
-    owner    = var.own
-    parent   = var.prt
-    services = local.osn[var.osn]
-    stage    = local.stage[var.stg]
-    source   = var.src
-    scope    = flatten(compact([
+    location   = var.loc
+    name       = lower("${var.org}_${var.prj}_${var.stg}")
+    owner      = var.own
+    parent_id  = var.prt
+    services   = local.osn[var.osn]
+    stage      = local.stage[var.stg]
+    source     = var.src
+    scope      = flatten(compact([
       var.acp    == true ? "acp" : "", 
       var.client == true ? "client" : "",  
       var.capi   == true ? "capi" : ""
     ]))
-    tenancy_id     = var.tenancy_ocid
-    user_id        = var.current_user_ocid
+    tenancy_id = var.tenancy_ocid
+    user_id    = var.current_user_ocid
   }
 }
 output "configuration" {
