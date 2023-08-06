@@ -12,7 +12,7 @@ logoUrl: https://imgur.com/5VPX3M0
 
 locale: "en"
 variableGroups:
-  - title: "Tenant Configuration"
+  - title: "Tenant"
     variables:
       - ${prt}
       - ${loc}
@@ -22,7 +22,7 @@ variableGroups:
       - ${stg}
       - ${src}
 
-  - title: "Avaloq Banking Suite"
+  - title: "Banking Suite"
     variables:
       - ${acp}
       - ${client}
@@ -36,14 +36,14 @@ variableGroups:
       - ${c5}
       - ${itg}
 
-  - title: "Network Options"
+  - title: "Network Configuration"
     visible: true
     variables:
       - ${inet}
       - ${nat}
       - ${osn}
 
-  - title: "Deployment Protection"
+  - title: "Restrictions"
     visible: true
     variables:
       - ${protect}
@@ -152,7 +152,7 @@ variables:
 
 # Conrols  
   cls:
-    title: "Compliance"
+    title: "Framework"
     description: "Selecting the comliance model preselects appropriate resource and control parameter"
     type: enum
     default: "FINMA"
