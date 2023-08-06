@@ -8,26 +8,29 @@ module "configuration" {
   source         = "github.com/avaloqcloud/acf_ctl_config"
   providers = {oci = oci.home}
   account = {
-    tenancy_id     = var.tenancy_ocid
+    class    = local.class[var.cls]
     compartment_id = var.compartment_ocid
     home           = var.region
-    user_id        = var.current_user_ocid
-  }
-  schema = {
-    class        = local.class[var.cls]
-    location     = var.loc
-    organization = var.org
-    owner        = var.own
-    parent       = var.prt
-    project      = var.prj
-    services     = local.osn[var.osn]
-    stage        = local.stage[var.stg]
-    source       = var.src
-    scope = flatten(compact([
+    label    = format(
+      "%s%s%s", 
+      lower(substr(var.org, 0, 3)), 
+      lower(substr(var.prj, 0, 2)),
+      lower(substr(var.stg, 0, 3)),
+    )
+    location = var.loc
+    name     = lower("${var.org}_${var.prj}_${var.stg}")
+    owner    = var.own
+    parent   = var.prt
+    services = local.osn[var.osn]
+    stage    = local.stage[var.stg]
+    source   = var.src
+    scope    = flatten(compact([
       var.acp    == true ? "acp" : "", 
       var.client == true ? "client" : "",  
       var.capi   == true ? "capi" : ""
     ]))
+    tenancy_id     = var.tenancy_ocid
+    user_id        = var.current_user_ocid
   }
 }
 output "configuration" {
