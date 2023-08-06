@@ -10,6 +10,12 @@ module "configuration" {
   account = {
     class    = local.class[var.cls]
     compartment_id = var.compartment_ocid
+    compliance = flatten(compact([
+      var.cis == true ? "acp" : "", 
+      var.pci == true ? "client" : "",  
+      var.c5  == true ? "capi" : "",
+      var.itg == true ? "capi" : ""
+    ]))
     home           = var.region
     label    = format(
       "%s%s%s", 

@@ -14,7 +14,6 @@ locale: "en"
 variableGroups:
   - title: "Tenant Configuration"
     variables:
-      - ${cls}
       - ${prt}
       - ${loc}
       - ${org}
@@ -28,6 +27,14 @@ variableGroups:
       - ${acp}
       - ${client}
       - ${capi}
+  
+  - title: "Operation and Compliance Controls"
+    variables:
+      - ${cls}
+      - ${cis}
+      - ${pci}
+      - ${c5}
+      - ${itg}
 
   - title: "Network Options"
     visible: true
@@ -75,17 +82,6 @@ variables:
     type: string
     required: true
   
-  cls:
-    title: "Purpose"
-    description: "Selecting the deployment model preselects appropriate resource parameter"
-    type: enum
-    default: "Sandbox"
-    enum:
-      - Sandbox
-      - Development
-      - Production
-    required: true
-  
   prt:
     title: "Parent Compartment"
     description: "The Oracle Cloud Identifier for the parent compartment. The default should only be changed by experienced users."
@@ -129,13 +125,14 @@ variables:
     required: true
 
   stg:
-    title: "Hardening"
+    title: "Stage"
     description: "Selecting the lifecycle stage preselects an appropriate collection of operational controls"
     type: enum
     default: "DEV"
     required: true
     enum:
       - DEV
+      - SIT
       - TEST
       - PROD
 
@@ -151,6 +148,42 @@ variables:
     description: "Provide an eMail address for the technical administrator"
     type: string
     default: "RobotNotExist@avaloq.com"
+    required: false
+
+# Conrols  
+  cls:
+    title: "Compliance"
+    description: "Selecting the comliance model preselects appropriate resource and control parameter"
+    type: enum
+    default: "FINMA"
+    enum:
+      - FINMA
+      - BAFIN
+      - MARS
+    required: true
+
+  cis:
+    type: boolean
+    title: "CIS"
+    default: false
+    required: false
+
+  pci:
+    type: boolean
+    title: "PCI"
+    default: false
+    required: false
+
+  c5:
+    type: boolean
+    title: "BSI C5"
+    default: false
+    required: false
+
+  itg:
+    type: boolean
+    title: "BSI Grundschutz"
+    default: false
     required: false
 
 # Avaloq Banking Suite

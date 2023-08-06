@@ -43,14 +43,15 @@ data "oci_core_services" "storage" {
 
 locals {
   class = {
-    "Sandbox"     = 1
-    "Development" = 2
-    "Production"  = 3
+    "FINMA" = 1
+    "BAFIN" = 2
+    "MARS"  = 3
   }
   stage = {
     "DEV"  = 1
-    "TEST" = 2
-    "PROD" = 3
+    "SIT"  = 2
+    "UAT"  = 3
+    "PROD" = 4
   }
   osn = {
     "ALL"     = lookup(data.oci_core_services.all.services[0], "id")
