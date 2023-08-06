@@ -64,6 +64,26 @@ variable "capi" {
   description = "Deploying the community API"
 }
 
+# Compliance
+variable "cis" {
+  type        = bool
+  description = "CIS Benchmark (https://www.cisecurity.org/cis-benchmarks)"
+}
+
+variable "pci" {
+  type        = bool
+  description = "PCI Security Standard (https://www.pcisecuritystandards.org/)"
+}
+
+variable "c5" {
+  type        = bool
+  description = "Cloud Computing Compliance Criteria Catalog (https://www.bsi.bund.de/EN/Themen/Unternehmen-und-Organisationen/Informationen-und-Empfehlungen/Empfehlungen-nach-Angriffszielen/Cloud-Computing/Kriterienkatalog-C5/kriterienkatalog-c5_node.html)"
+}
+
+variable "itg" {
+  type        = bool
+  description = "IT Grundschutz Compendium (https://www.bsi.bund.de/EN/Themen/Unternehmen-und-Organisationen/Standards-und-Zertifizierung/IT-Grundschutz/it-grundschutz_node.html)"
+}
 # Domain Protection
 variable "protect" {
   type        = bool
