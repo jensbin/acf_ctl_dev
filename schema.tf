@@ -2,10 +2,10 @@
 // Licensed under the Apache 2.0 license shown at https://www.apache.org/licenses/LICENSE-2.0
 
 // Prepopulated Variables 
-variable "tenancy_ocid" {}
-variable "compartment_ocid" {}
-variable "region" {}
-variable "current_user_ocid" {}
+variable "tenancy_ocid"      { }
+variable "compartment_ocid"  { }
+variable "region"            { }
+variable "current_user_ocid" { }
 
 // Compartment Classification
 variable "cls" {
@@ -39,7 +39,7 @@ variable "own" {
 }
 
 variable "stg"           { 
-  type = string
+  type        = string
   description = "The stage variable triggers lifecycle related resources to be provisioned"
 }
 
