@@ -33,8 +33,7 @@ variableGroups:
       - ${cls}
       - ${cis}
       - ${pci}
-      - ${c5}
-      - ${itg}
+      - ${c5} 
 
   - title: "Network Configuration"
     visible: true
@@ -155,8 +154,9 @@ variables:
     title: "Framework"
     description: "Selecting the comliance model preselects appropriate resource and control parameter"
     type: enum
-    default: "FINMA"
+    default: "None"
     enum:
+      - None
       - FINMA
       - BAFIN
       - MARS
@@ -180,13 +180,6 @@ variables:
     type: boolean
     title: "BSI C5"
     description: "Cloud Computing Compliance Criteria Catalog (https://www.bsi.bund.de/EN/Themen/Unternehmen-und-Organisationen/Informationen-und-Empfehlungen/Empfehlungen-nach-Angriffszielen/Cloud-Computing/Kriterienkatalog-C5/kriterienkatalog-c5_node.html)"
-    default: false
-    required: false
-
-  itg:
-    type: boolean
-    title: "BSI Grundschutz"
-    description: "IT Grundschutz Compendium (https://www.bsi.bund.de/EN/Themen/Unternehmen-und-Organisationen/Standards-und-Zertifizierung/IT-Grundschutz/it-grundschutz_node.html)"
     default: false
     required: false
 

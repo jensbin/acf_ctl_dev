@@ -42,11 +42,12 @@ data "oci_core_services" "storage" {
 }
 
 locals {
-  class = {
-    "FINMA" = 0
-    "BAFIN" = 1
-    "MARS"  = 2
-  }
+  class = anytrue ([
+    !contains(["FINMA", "BAFIN", "MARS"], var.cls),
+    var.cis, 
+    var.pci,
+    var.c5
+  ])
   stage = {
     "DEV"  = 0
     "SIT"  = 1

@@ -7,10 +7,6 @@ variable "compartment_ocid"  { }
 variable "region"            { }
 variable "current_user_ocid" { }
 
-// Compartment Classification
-variable "cls" {
-  type = string
-}
 
 // Resident Configuration
 variable "prt" {
@@ -65,6 +61,11 @@ variable "capi" {
 }
 
 # Compliance
+variable "cls" {
+  type        = string
+  description = "Specify the base compliance framework"
+}
+
 variable "cis" {
   type        = bool
   description = "CIS Benchmark (https://www.cisecurity.org/cis-benchmarks)"
@@ -80,10 +81,6 @@ variable "c5" {
   description = "Cloud Computing Compliance Criteria Catalog (https://www.bsi.bund.de/EN/Themen/Unternehmen-und-Organisationen/Informationen-und-Empfehlungen/Empfehlungen-nach-Angriffszielen/Cloud-Computing/Kriterienkatalog-C5/kriterienkatalog-c5_node.html)"
 }
 
-variable "itg" {
-  type        = bool
-  description = "IT Grundschutz Compendium (https://www.bsi.bund.de/EN/Themen/Unternehmen-und-Organisationen/Standards-und-Zertifizierung/IT-Grundschutz/it-grundschutz_node.html)"
-}
 # Domain Protection
 variable "protect" {
   type        = bool

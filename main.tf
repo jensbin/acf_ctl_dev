@@ -13,8 +13,7 @@ module "configuration" {
     compliance = flatten(compact([
       var.cis == true ? "cis" : "", 
       var.pci == true ? "pci" : "",  
-      var.c5  == true ? "c5" : "",
-      var.itg == true ? "itg" : ""
+      var.c5  == true ? "c5" : ""
     ]))
     home           = var.region
     label    = format(
