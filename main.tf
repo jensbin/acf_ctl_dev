@@ -8,7 +8,7 @@ module "configuration" {
   source         = "github.com/avaloqcloud/acf_ctl_config"
   providers = {oci = oci.home}
   account = {
-    class    = local.class[var.cls]
+    class    = local.class == true ? 1 : 0
     compartment_id = var.compartment_ocid
     compliance = flatten(compact([
       var.cis == true ? "cis" : "", 
