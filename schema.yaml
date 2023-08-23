@@ -154,12 +154,12 @@ variables:
     title: "Framework"
     description: "Selecting the comliance model preselects appropriate resource and control parameter"
     type: enum
-    default: "None"
+    default: "FINMA"
     enum:
-      - None
       - FINMA
       - BAFIN
       - MARS
+      - Other
     required: true
 
   cis:
