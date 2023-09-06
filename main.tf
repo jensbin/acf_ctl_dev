@@ -88,12 +88,12 @@ output "encryption" {
   value = {for resource, parameter in module.encryption : resource => parameter}
   sensitive = true
 }
-// --- wallet configuration --- //
+// --- wallet configuration --- /*/
 
 // --- network configuration --- //
 module "network" {
-  source     = "./assets/network"
-  depends_on = [module.configuration, module.encryption, module.resident]
+  source     = "github.com/avaloqcloud/acf_res_net"
+  depends_on = [module.configuration] #module.encryption, module.resident
   providers = {oci = oci.service}
   for_each  = {for segment in local.segments : segment.name => segment}
   schema = {
@@ -117,7 +117,7 @@ output "network" {
 }
 // --- network configuration --- //
 
-// --- database creation --- //
+/*/ --- database creation --- //
 module "database" {
   source     = "./assets/database"
   depends_on = [module.configuration, module.resident, module.network, module.encryption]
