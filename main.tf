@@ -7,7 +7,7 @@
 module "configuration" {
   source         = "github.com/avaloqcloud/acf_ctl_config"
   providers = {oci = oci.home}
-  account = {
+  setting = {
     compartment_id = var.compartment_ocid
     controls = flatten(compact([
       var.cls,
