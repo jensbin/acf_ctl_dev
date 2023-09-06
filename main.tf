@@ -92,7 +92,7 @@ output "encryption" {
 
 // --- network configuration --- //
 module "network" {
-  source     = "git::https://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@github.com/avaloqcloud/acf_res_net.git"
+  source     = "git::https://oauth2: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@github.com/avaloqcloud/acf_res_net.git"
   depends_on = [module.configuration] #module.encryption, module.resident
   providers = {oci = oci.service}
   for_each  = {for segment in local.segments : segment.name => segment}
