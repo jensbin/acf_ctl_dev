@@ -43,7 +43,7 @@ output "configuration" {
 }
 // --- configuration --- //
 
-// --- operation controls --- //
+/*/ --- operation controls --- //
 module "resident" {
   source     = "github.com/avaloqcloud/acf_ctl_config"
   depends_on = [module.configuration]
@@ -65,7 +65,7 @@ output "resident" {
 }
 // --- operation controls --- //
 
-/*/ --- wallet configuration --- //
+// --- wallet configuration --- //
 module "encryption" {
   source     = "./assets/encryption"
   depends_on = [module.configuration, module.resident]
@@ -90,7 +90,7 @@ output "encryption" {
 }
 // --- wallet configuration --- /*/
 
-// --- network configuration --- //
+/*/ --- network configuration --- //
 module "network" {
   source     = "github.com/avaloqcloud/acf_res_net"
   depends_on = [module.configuration]# module.resident] #module.encryption, 
@@ -117,7 +117,7 @@ output "network" {
 }
 // --- network configuration --- //
 
-/*/ --- database creation --- //
+// --- database creation --- //
 module "database" {
   source     = "./assets/database"
   depends_on = [module.configuration, module.resident, module.network, module.encryption]
