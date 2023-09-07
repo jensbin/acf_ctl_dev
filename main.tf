@@ -96,21 +96,22 @@ module "network" {
   depends_on = [module.configuration]# module.resident] #module.encryption, 
   #providers = {oci = oci.service}
   for_each  = {for zone in local.zones : zone.name => zone}
-  # schema = {
-  #   internet = var.internet == "PUBLIC" ? "ENABLE" : "DISABLE"
-  #   nat      = var.nat == true ? "ENABLE" : "DISABLE"
-  #   ipv6     = var.ipv6
-  #   osn      = var.osn
+
+  settings = {
+    compartment_id    = module.configuration.oci_core_vcn.zone_private.compartment_id
+    name              = module.configuration.oci_core_vcn.zone_private.name
+    description       = module.configuration.oci_core_vcn.zone_private.description
+    cidr              = module.configuration.oci_core_vcn.zone_private.cidr
+  }
+  # config = {
+  #   tenancy = module.configuration.tenancy
+  #   service = module.configuration.service
+  #   network = module.configuration.network[each.key]
   # }
-  config = {
-    tenancy = module.configuration.tenancy
-    service = module.configuration.service
-    network = module.configuration.network[each.key]
-  }
-  assets = {
-    #encryption = module.encryption["main"]
-    #resident   = module.resident
-  }
+  # assets = {
+  #   encryption = module.encryption["main"]
+  #   resident   = module.resident
+  # }
 }
 output "network" {
   value = {for resource, parameter in module.network : resource => parameter}
