@@ -101,7 +101,7 @@ module "network" {
     compartment_id    = module.configuration.oci_core_vcn.zone_private.compartment_id
     name              = module.configuration.oci_core_vcn.zone_private.name
     description       = module.configuration.oci_core_vcn.zone_private.description
-    cidr              = module.configuration.oci_core_vcn.zone_private.cidr
+    cidr_blocks       = module.configuration.oci_core_vcn.zone_private.cidr_blocks
   }
   # config = {
   #   tenancy = module.configuration.tenancy
