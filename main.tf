@@ -43,9 +43,9 @@ output "configuration" {
 }
 // --- configuration --- //
 
-/*/ --- operation controls --- //
+// --- operation controls --- //
 module "resident" {
-  source     = "./assets/resident"
+  source     = "github.com/avaloqcloud/acf_ctl_config"
   depends_on = [module.configuration]
   providers  = {oci = oci.home}
   schema = {
@@ -65,7 +65,7 @@ output "resident" {
 }
 // --- operation controls --- //
 
-// --- wallet configuration --- //
+/*/ --- wallet configuration --- //
 module "encryption" {
   source     = "./assets/encryption"
   depends_on = [module.configuration, module.resident]
@@ -92,9 +92,9 @@ output "encryption" {
 
 // --- network configuration --- //
 module "network" {
-  source     = "github.com/avaloqcloud/acf_resource_network"
-  depends_on = [module.configuration] #module.encryption, module.resident
-  providers = {oci = oci.service}
+  source     = "github.com/avaloqcloud/acf_res_net"
+  depends_on = [module.configuration]# module.resident] #module.encryption, 
+  #providers = {oci = oci.service}
   for_each  = {for segment in local.segments : segment.name => segment}
   schema = {
     internet = var.internet == "PUBLIC" ? "ENABLE" : "DISABLE"
@@ -108,8 +108,8 @@ module "network" {
     network = module.configuration.network[each.key]
   }
   assets = {
-    encryption = module.encryption["main"]
-    resident   = module.resident
+    #encryption = module.encryption["main"]
+    #resident   = module.resident
   }
 }
 output "network" {
