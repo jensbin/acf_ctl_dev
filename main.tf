@@ -90,18 +90,18 @@ output "encryption" {
 }
 // --- wallet configuration --- /*/
 
-/*/ --- network configuration --- //
+// --- network configuration --- //
 module "network" {
   source     = "github.com/avaloqcloud/acf_res_net"
   depends_on = [module.configuration]# module.resident] #module.encryption, 
   #providers = {oci = oci.service}
-  for_each  = {for segment in local.segments : segment.name => segment}
-  schema = {
-    internet = var.internet == "PUBLIC" ? "ENABLE" : "DISABLE"
-    nat      = var.nat == true ? "ENABLE" : "DISABLE"
-    ipv6     = var.ipv6
-    osn      = var.osn
-  }
+  for_each  = {for zone in local.zones : zone.name => zone}
+  # schema = {
+  #   internet = var.internet == "PUBLIC" ? "ENABLE" : "DISABLE"
+  #   nat      = var.nat == true ? "ENABLE" : "DISABLE"
+  #   ipv6     = var.ipv6
+  #   osn      = var.osn
+  # }
   config = {
     tenancy = module.configuration.tenancy
     service = module.configuration.service
@@ -117,7 +117,7 @@ output "network" {
 }
 // --- network configuration --- //
 
-// --- database creation --- //
+/*/ --- database creation --- //
 module "database" {
   source     = "./assets/database"
   depends_on = [module.configuration, module.resident, module.network, module.encryption]
