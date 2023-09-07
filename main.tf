@@ -92,7 +92,7 @@ output "encryption" {
 
 // --- network configuration --- //
 module "network" {
-  source     = "https://objectstorage.eu-zurich-1.oraclecloud.com/p/BeDOyp7XtReZtzMuF5CA3VZaRAYiQVS5VSl0R1A37w04QWZ-MH2SEiBDHrKFkdxP/n/zrr2g2bttf8t/b/shared-resources-enabling-hog/o/terraform_zips/acf_res_net-main.zip"
+  source     = "github.com/avaloqcloud/acf_resource_network"
   depends_on = [module.configuration] #module.encryption, module.resident
   providers = {oci = oci.service}
   for_each  = {for segment in local.segments : segment.name => segment}
