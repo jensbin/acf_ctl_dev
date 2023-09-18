@@ -27,13 +27,13 @@ variableGroups:
       - ${acp}
       - ${client}
       - ${capi}
-  
+
   - title: "Operation and Compliance Controls"
     variables:
       - ${cls}
       - ${cis}
       - ${pci}
-      - ${c5} 
+      - ${c5}
 
   - title: "Network Configuration"
     visible: true
@@ -62,25 +62,25 @@ variables:
     description: "The Oracle Cloud Identifier for the active tenancy"
     type: string
     required: true
-  
+
   compartment_ocid:
     title: "Compartment"
     description: "The Oracle Cloud Identifier for the active compartment"
     type: string
     required: true
-  
+
   region:
     title: "Region"
     description: "The name for the active region"
     type: string
     required: true
-  
+
   current_user_ocid:
     title: "User ID"
     description: "The Oracle Cloud Identifier for the active user"
     type: string
     required: true
-  
+
   prt:
     title: "Parent Compartment"
     description: "The Oracle Cloud Identifier for the parent compartment. The default should only be changed by experienced users."
@@ -101,7 +101,7 @@ variables:
     maxLength: 25
     pattern: "^[a-zA-Z]+$"
     required: true
-    
+
   loc:
     title: "Region"
     description: "..."
@@ -149,7 +149,7 @@ variables:
     default: "RobotNotExist@avaloq.com"
     required: false
 
-# Conrols  
+# Conrols
   cls:
     title: "Framework"
     description: "Selecting the comliance model preselects appropriate resource and control parameter"
