@@ -11,14 +11,14 @@ module "configuration" {
     compartment_id = var.compartment_ocid
     controls = flatten(compact([
       var.cls,
-      var.cis == true ? "cis" : "", 
-      var.pci == true ? "pci" : "",  
+      var.cis == true ? "cis" : "",
+      var.pci == true ? "pci" : "",
       var.c5  == true ? "c5" : ""
     ]))
     home           = var.region
     label    = format(
-      "%s%s%s", 
-      lower(substr(var.org, 0, 3)), 
+      "%s%s%s",
+      lower(substr(var.org, 0, 3)),
       lower(substr(var.prj, 0, 2)),
       lower(substr(var.stg, 0, 3)),
     )
@@ -30,8 +30,8 @@ module "configuration" {
     stage      = local.stage[var.stg]
     source     = var.src
     scope      = flatten(compact([
-      var.acp    == true ? "acp" : "", 
-      var.client == true ? "client" : "",  
+      var.acp    == true ? "acp" : "",
+      var.client == true ? "client" : "",
       var.capi   == true ? "capi" : ""
     ]))
     tenancy_id = var.tenancy_ocid
@@ -51,7 +51,7 @@ module "resident" {
   schema = {
     # Enable compartment delete on destroy. If true, compartment will be deleted when `terraform destroy` is executed; If false, compartment will not be deleted on `terraform destroy` execution
     enable_delete = var.stage != "PRODUCTION" ? true : false
-    # Reference to the deployment root. The service is setup in an encapsulating child compartment 
+    # Reference to the deployment root. The service is setup in an encapsulating child compartment
     parent_id     = var.tenancy_ocid
     user_id       = var.current_user_ocid
   }
@@ -93,7 +93,7 @@ output "encryption" {
 // --- network configuration --- //
 module "network" {
   source     = "github.com/avaloqcloud/acf_res_net"
-  depends_on = [module.configuration]# module.resident] #module.encryption, 
+  depends_on = [module.configuration]# module.resident] #module.encryption,
   # providers = {oci = oci.service}
   # for_each  = {for zone in local.zones : zone.name => zone}
 
