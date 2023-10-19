@@ -10,7 +10,7 @@
 The Avaloq Cloud Service Framework (ACSF) is a collection of deployment scripts that connect cloud services running on Azure, AWS or Google with applications running on Oracle Cloud Infrastructure (OCI). [![License](https://img.shields.io/badge/license-apache-green)](https://www.apache.org/licenses/LICENSE-2.0)
 
 ## Development Module
-The development version of the [Foundation Module](https://github.com/avaloqcloud/acf_ctl_root) and enables engineers to develop a set of deployment parameter and the respective resource configurations without appplying these configuration in deployment scripts. It accelerates the development process, because engineers can create and validate the output of the [configuration module](https://github.com/avaloqcloud/acf_ctl_config) against the service provider definitions without invoking the cloud controller.   
+The development version of the [Foundation Module](https://github.com/avaloqcloud/acf_ctl_root) and enables engineers to develop a set of deployment parameter and the respective resource configurations without applying these configuration in deployment scripts. It accelerates the development process, because engineers can create and validate the output of the [configuration module](https://github.com/avaloqcloud/acf_ctl_config) against the service provider definitions without invoking the cloud controller.   
 
 ## Contributing
 This project is a community project the code is open source.  Please submit your contributions by forking this repository and submitting a pull request!  Avaloq appreciates any contributions that are made by the open source community.
